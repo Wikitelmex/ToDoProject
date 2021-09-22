@@ -45,12 +45,6 @@ To get a local copy up and running follow these simple example steps.
 - Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/Wikitelmex)
-- Facebook: [@facebookhandle](https://www.facebook.com/alex.wikitelmex/)
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/alejandro-castillo-6849131a9/)
-
 ## Show your support
 
 Give a ⭐️ if you like this project!
