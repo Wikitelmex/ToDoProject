@@ -1,5 +1,5 @@
 body {
-  background-color: bisque;
+  background-color: whitesmoke;
 }
 
 * {
@@ -8,4 +8,8 @@ body {
 
 .midcard {
   max-width: 30rem;
+}
+
+.todo-elements {
+  padding-inline-start: 0;
 }
