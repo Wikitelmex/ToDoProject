@@ -14,6 +14,7 @@ export function insertTask(description = 'new task', completed = false, elementI
 }
 
 export function insertTaskArray(elementArray = []) {
+  elementArray.sort((a, b) => ((a.index > b.index) ? 1 : -1));
   elementArray.forEach((element) => {
     insertTask(element.description, element.completed, element.index);
   });

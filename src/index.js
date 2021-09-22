@@ -22,14 +22,14 @@ const tasksData = [
     index: 2,
   },
   {
-    description: 'task 4',
+    description: 'task 5',
     completed: false,
-    index: 3,
+    index: 4,
   },
   {
-    description: 'task 5',
+    description: 'task 4',
     completed: true,
-    index: 4,
+    index: 3,
   },
 ];
 
