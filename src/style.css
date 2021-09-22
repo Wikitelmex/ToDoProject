@@ -1,3 +1,15 @@
 body {
-  background-color: bisque;
+  background-color: whitesmoke;
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+.midcard {
+  max-width: 30rem;
+}
+
+.todo-elements {
+  padding-inline-start: 0;
 }
