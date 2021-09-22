@@ -2,10 +2,11 @@
 import _ from 'lodash';
 import './style.css';
 import { insertTask, insertTaskArray } from './addelement.js';
+import { stateTask, saveData, loadData } from './statusupdates.js';
 
 const todoul = document.querySelector('.todo-elements');
 
-const tasksData = [
+let tasksData = [
   {
     description: 'task 1',
     completed: true,
@@ -49,4 +50,15 @@ window.onEnter = (e) => {
   }
 };
 
-window.onload = () => window.insertTaskArray();
+window.onChangeCheck = (e) => {
+  stateTask(e, tasksData);
+  saveData(tasksData);
+};
+
+window.onload = () => {
+  const d = loadData();
+  if (d != null) {
+    tasksData = d;
+  }
+  window.insertTaskArray(tasksData);
+};
