@@ -1,42 +1,13 @@
 // eslint-disable-next-line
 import _ from 'lodash';
 import './style.css';
-import { insertTask, insertTaskArray } from './addelement.js';
+import { insertTask, insertTaskArray, deleteTask } from './addelement.js';
 import { stateTask, saveData, loadData } from './statusupdates.js';
+import { onEditable, onNonEditable, orderArray, removeFromArray, insertOnArray } from "./crudtask";
 
 const todoul = document.querySelector('.todo-elements');
 
-let tasksData = [
-  {
-    description: 'task 1',
-    completed: true,
-    index: 0,
-  },
-  {
-    description: 'task 2',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'task 3',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'task 5',
-    completed: false,
-    index: 4,
-  },
-  {
-    description: 'task 4',
-    completed: true,
-    index: 3,
-  },
-];
-
-window.insertTask = (task) => {
-  insertTask(task);
-};
+let tasksData = [];
 
 window.insertTaskArray = () => {
   todoul.innerHTML = '';
@@ -45,15 +16,56 @@ window.insertTaskArray = () => {
 
 window.onEnter = (e) => {
   if (e.keyCode === 13) {
-    insertTask(e.target.value);
+    if (e.target.value === null || e.target.value.match(/^ *$/) !== null) {
+      return;
+    }
+    
+    const x = insertOnArray(e.target.value,tasksData);
+    insertTask(x.description, x.completed, x.index);
+
+    saveData(tasksData);
+    
     e.target.value = '';
   }
 };
+
+window.onAddButtonClick = () => {
+  const floatingInput = document.querySelector("#floatingInput");
+  if (floatingInput.value === null || floatingInput.value.match(/^ *$/) !== null) {
+    return;
+  }
+  
+  const x = insertOnArray(floatingInput.value,tasksData);
+  insertTask(x.description, x.completed, x.index);
+
+  saveData(tasksData);
+  
+  floatingInput.value = '';
+  floatingInput.focus();
+}
 
 window.onChangeCheck = (e) => {
   stateTask(e, tasksData);
   saveData(tasksData);
 };
+
+window.onEditable = (elementId) => {
+  onEditable(elementId);
+};
+
+window.onNonEditable  = (elementId) => {
+  setTimeout(() => {
+    onNonEditable(elementId);
+  }, 200);
+  
+};
+
+window.onRemoveButtonClick = (elementId) => {
+  removeFromArray(elementId,tasksData);
+  deleteTask(elementId);
+  orderArray(tasksData);
+  saveData(tasksData);
+}
 
 window.onload = () => {
   const d = loadData();
