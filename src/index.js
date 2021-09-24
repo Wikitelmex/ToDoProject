@@ -1,5 +1,3 @@
-// eslint-disable-next-line
-import _ from 'lodash';
 import './style.css';
 import { insertTaskArray } from './modules/addelement.js';
 import { stateTask, saveData, loadData } from './modules/statusupdates.js';
