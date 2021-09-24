@@ -34,19 +34,19 @@
                     <label for="floatingInput"><span class="fst-italic">Add to your list...</span></label>
                 </div>
                 
-                <button class="btn btn-outline-secondary float-end border-0 p-3" type="button"><i class="bi bi-arrow-return-left"></i></button>
+                <button class="btn btn-outline-secondary float-end border-0 p-3" type="button" onclick="window.onAddButtonClick()"><i class="bi bi-arrow-return-left"></i></button>
                 
             </div>
 
-            <!--card elements must be generated js dinamically-->
             <ul class="todo-elements mb-0">
                 <!--data dinamically loaded-->
             </ul>
+            
         </div>
 
         <!--card footer-->
         <div class="card-footer border-top-0">
-            <button type="button" class="btn btn-outline-secondary border-0 p-2 w-100">Clear all completed</button>
+            <button type="button" class="btn btn-outline-secondary border-0 p-2 w-100" onclick="window.onClearAllCompleted()">Clear all completed</button>
         </div>
     </div>
 
