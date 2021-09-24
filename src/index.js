@@ -1,11 +1,11 @@
 // eslint-disable-next-line
 import _ from 'lodash';
 import './style.css';
-import { insertTaskArray } from './addelement.js';
-import { stateTask, saveData, loadData } from './statusupdates.js';
+import { insertTaskArray } from './modules/addelement.js';
+import { stateTask, saveData, loadData } from './modules/statusupdates.js';
 import {
   onEditable, onNonEditable, orderArray, removeFromArray, insertOnArray, updateFromArray,
-} from './crudtask.js';
+} from './modules/crudtask.js';
 
 const todoul = document.querySelector('.todo-elements');
 
@@ -64,7 +64,6 @@ window.onNonEditable = (elementId) => {
 
 window.onRemoveButtonClick = (elementId) => {
   removeFromArray(elementId, tasksData);
-  // deleteTask(elementId);
   orderArray(tasksData);
   window.insertTaskArray(tasksData);
   saveData(tasksData);

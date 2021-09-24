@@ -19,7 +19,7 @@ export function onNonEditable(elementId = 0) {
 
 export function orderArray(elementArray = []) {
   elementArray.sort((a, b) => ((a.index > b.index) ? 1 : -1));
-  for (let index = 0; index < elementArray.length; index++) { // eslint-disable-line
+  for (let index = 0; index < elementArray.length; index += 1) {
     elementArray[index].index = index;
   }
 }
@@ -46,6 +46,5 @@ export function insertOnArray(description = '', elementArray = []) {
     index: elementArray.length,
   };
   elementArray.push(element);
-  // console.log(elementArray);
   return element;
 }
