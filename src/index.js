@@ -1,9 +1,11 @@
 // eslint-disable-next-line
 import _ from 'lodash';
 import './style.css';
-import { insertTask, insertTaskArray, deleteTask } from './addelement.js';
+import { insertTaskArray } from './addelement.js';
 import { stateTask, saveData, loadData } from './statusupdates.js';
-import { onEditable, onNonEditable, orderArray, removeFromArray, insertOnArray } from "./crudtask";
+import {
+  onEditable, onNonEditable, orderArray, removeFromArray, insertOnArray, updateFromArray,
+} from './crudtask.js';
 
 const todoul = document.querySelector('.todo-elements');
 
@@ -19,30 +21,28 @@ window.onEnter = (e) => {
     if (e.target.value === null || e.target.value.match(/^ *$/) !== null) {
       return;
     }
-    
-    const x = insertOnArray(e.target.value,tasksData);
-    insertTask(x.description, x.completed, x.index);
 
+    insertOnArray(e.target.value, tasksData);
     saveData(tasksData);
-    
+    window.insertTaskArray(tasksData);
+
     e.target.value = '';
   }
 };
 
 window.onAddButtonClick = () => {
-  const floatingInput = document.querySelector("#floatingInput");
+  const floatingInput = document.querySelector('#floatingInput');
   if (floatingInput.value === null || floatingInput.value.match(/^ *$/) !== null) {
     return;
   }
-  
-  const x = insertOnArray(floatingInput.value,tasksData);
-  insertTask(x.description, x.completed, x.index);
 
+  insertOnArray(floatingInput.value, tasksData);
   saveData(tasksData);
-  
+  window.insertTaskArray(tasksData);
+
   floatingInput.value = '';
   floatingInput.focus();
-}
+};
 
 window.onChangeCheck = (e) => {
   stateTask(e, tasksData);
@@ -53,19 +53,29 @@ window.onEditable = (elementId) => {
   onEditable(elementId);
 };
 
-window.onNonEditable  = (elementId) => {
+window.onNonEditable = (elementId) => {
+  const editable = document.querySelector(`#editable${elementId}`);
+  updateFromArray(elementId, tasksData, editable.value);
+  saveData(tasksData);
   setTimeout(() => {
     onNonEditable(elementId);
   }, 200);
-  
 };
 
 window.onRemoveButtonClick = (elementId) => {
-  removeFromArray(elementId,tasksData);
-  deleteTask(elementId);
+  removeFromArray(elementId, tasksData);
+  // deleteTask(elementId);
   orderArray(tasksData);
+  window.insertTaskArray(tasksData);
   saveData(tasksData);
-}
+};
+
+window.onClearAllCompleted = () => {
+  tasksData = tasksData.filter((word) => word.completed === false);
+  orderArray(tasksData);
+  window.insertTaskArray(tasksData);
+  saveData(tasksData);
+};
 
 window.onload = () => {
   const d = loadData();

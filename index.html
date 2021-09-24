@@ -34,11 +34,27 @@
                     <label for="floatingInput"><span class="fst-italic">Add to your list...</span></label>
                 </div>
                 
-                <button class="btn btn-outline-secondary float-end border-0 p-3" type="button"><i class="bi bi-arrow-return-left"></i></button>
+                <button class="btn btn-outline-secondary float-end border-0 p-3" type="button" onclick="window.onAddButtonClick()"><i class="bi bi-arrow-return-left"></i></button>
                 
             </div>
 
             <!--card elements must be generated js dinamically-->
+
+
+            <!-- test task
+            <ul class="todo-elements mb-0">
+                <li class="border-bottom ms-0 d-flex" id='element${elementId}'>
+                    <div class="form-check w-100 d-flex align-items-center">
+                        <input type="checkbox" ${chk} class="form-check-input ms-1 me-1" id='check${elementId}' value='${elementId}' onchange='window.onChangeCheck(event)'>
+                        <input class="w-100 border-0 bg-transparent" readonly="true" type="text" id="editable${elementId}" name="lname" value="${description}" ondblclick="this.readOnly='';" onblur="this.readOnly='true';">
+                        <button class="btn btn-outline-secondary float-end border-0 p-3 d-none" id='trash${elementId}' type="button"><i class="bi bi-trash"></i></button>
+                    </div>
+                    <button class="btn btn-outline-secondary float-end border-0 p-3" type="button"><i class="bi bi-grip-vertical"></i></button>
+                </li>
+            </ul>
+            -->
+
+
             <ul class="todo-elements mb-0">
                 <!--data dinamically loaded-->
             </ul>
@@ -46,7 +62,7 @@
 
         <!--card footer-->
         <div class="card-footer border-top-0">
-            <button type="button" class="btn btn-outline-secondary border-0 p-2 w-100">Clear all completed</button>
+            <button type="button" class="btn btn-outline-secondary border-0 p-2 w-100" onclick="window.onClearAllCompleted()">Clear all completed</button>
         </div>
     </div>
 
